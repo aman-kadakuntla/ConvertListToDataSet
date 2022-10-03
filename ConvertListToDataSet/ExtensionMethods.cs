@@ -10,13 +10,13 @@ namespace ConvertListToDataSet
 {
     public static class ExtensionMethods
     {
-        public static DataSet ToDataSet<T>(this List<T> list)
+        public static DataSet ToDataSet<T>(this IEnumerable<T> list)
         {
             var converted = new DataSet();
             converted.Tables.Add(NewTable(list));
             return converted;
         }
-        private static DataTable NewTable<T>(List<T> list)
+        private static DataTable NewTable<T>(IEnumerable<T> list)
         {
             PropertyInfo[] propInfo = typeof(T).GetProperties();
             DataTable table = Table<T>(list, propInfo);
@@ -31,7 +31,7 @@ namespace ConvertListToDataSet
                 row[p.Name.ToString()] = p.GetValue(listItem, null);
             return row;
         }
-        private static DataTable Table<T>(List<T> list, PropertyInfo[] pi)
+        private static DataTable Table<T>(IEnumerable<T> list, PropertyInfo[] pi)
         {
             DataTable table = new DataTable();
             foreach (PropertyInfo p in pi)
