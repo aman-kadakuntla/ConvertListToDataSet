@@ -29,7 +29,7 @@ foreach (DataRow row in dt.Rows)
 
 
 //querying the db to check if query result can be converted to dataset
-string connectionString = "Data Source=AMAN; initial catalog=EmployeeDetails; integrated security=true";
+string connectionString = "Data Source=<server name>; initial catalog=EmployeeDetails; integrated security=true";
 IDbConnection dbConnection=new SqlConnection (connectionString);
 dbConnection.Open();
 string query = "select * from EmployeeDetails";
